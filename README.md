@@ -77,3 +77,10 @@ My domain name server was purchased in Goddady. I added a CNAME record and the v
 The path of the source bundle will be provided in your "aws_s3_object" resource in the source argument.
 
 Important: The s3 bucket provisions in this code will store only the source bundle zip file. Beanstalk will create automaticaly its own bucket where the artifact, and other resources will be stored. 
+
+
+Author
+--------------------------------------------------------------------------------------------------------------------------
+Module is maintained by Ernestine D Motouom
+
+
