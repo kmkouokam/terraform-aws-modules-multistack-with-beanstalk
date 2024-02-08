@@ -5,7 +5,7 @@ Use the submodules dropdown above to view the 15 submodules defined within this 
 
 Features
 ------------------------------------------------------------------------------------------------------------------------
-1- Create mutlistack application with MySQL, Elasticached, ActiveMQ in the backend, and Beanstalk in the frontend.
+1- Create mutlistack application with MySQL, Elasticached, and ActiveMQ in the backend, and Beanstalk in the frontend.
 
 2- Iam role and policies for Beanstalk
 
@@ -23,7 +23,7 @@ Add SSH rule to bastion security group from MyIP
 Login to bastion
 clone the source code
 
-Important: The network should have been created already because you need to refer this data.terraform_remote_state.vpc in your bastion main.tf code file
+Important: The network should have been created already because you need to refer to this data.terraform_remote_state.vpc in your bastion main.tf code file
 
 Without the terraform local backend block, terraform will tell you that the state file cannot be read.
 
@@ -33,50 +33,50 @@ Without the terraform local backend block, terraform will tell you that the stat
 
 Add a terraform block for required providers in db-main.tf code.
 
-It will generate password for mysql and ActiveMQ and stored in the parameter store in the system manager.
+It will generate passwords for MySQL and ActiveMQ and store them in the parameter store in the system manager.
 
-Will create mysql, Elaticached, and ActiveMQ instances and a backend securyty group.
+Will create MySQL, Elaticached, and ActiveMQ instances and a backend security group.
 
 You must set up the data.terraform_remote_state.bastion, data.terraform_remote_state.vpc, and the terraform local backend for terraform apply to work without error messages.
 
-The bastion module should be created before db moddule.
+The bastion module should be created before the db module.
 
-Without this block: the terraform local backend , an error message will be generated saying the state file could not be read.
+Without this block: the terraform local backend, an error message will be generated saying the state file could not be read.
 
 
-Login into your bastionHost to initialize the db with the schema  using the below command
+Login into your bastion host to initialize the DB with the schema  using the below command
 
 clone the source code
 
-commands: mysql -h "dbendpoint" -u "dbusername" -p"dbpassword" "DBaccountName" < db_backup.sql
+commands: MySQL -h "DB endpoint" -u "DB username" -p"DB password" "DBaccountName" < db_backup.sql
 
-Edit your application.properties file with the rds, elasticcahe, and activeMq endpoints as well as password and username of your rds and activeMq.
+Edit your application.properties file with the rds, elasticated, and activeMq endpoints as well as the password and username of your rds and activeMq.
 
 built your artifact 
 
 
 
-4- create a directory called iam_role, If you change the directory name, remember to adjust the path in terraform block.
+4- create a directory called iam_role, If you change the directory name, remember to adjust the path in the terraform block.
 
 
-This module create IAM role service and policies for Elasticbeanstalk and an instance profile.
+This module creates IAM role service and policies for Elastic Beanstalk and an instance profile.
 
 The instance profile is used to pass an IAM role to an EC2 instance
 
 5- set up the frontend: create a directory called frontend, If you change the directory name, remember to adjust the path in terraform block.
 
- The vpc, the beanstalk service role and ec2 role should have been created already, because you must refere them here using data block.
+ The VPC, the Beanstalk service role, and the ec2 role should have been created already because you must refer them here using the data block.
 
  Without the terraform local backend block, terraform will tell you that the state file cannot be read.
 
-The source bundle is needed for your elasticbeanstalk app. Found here
+The source bundle is needed for your elastic Beanstalk app. Found here
 https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/tutorials.html.
 
-My domain name server was purchased in Goddady. I added a CNAME record and the value provided was my beanstalk domain name. After provisioning your environement, edit the configuration to add listener https and provide your domain name certificate.
+My domain name server was purchased in Goddaddy. I added a CNAME record and the value provided was my Beanstalk domain name. After provisioning your environment, edit the configuration to add listener https and provide your domain name certificate.
 
 The path of the source bundle will be provided in your "aws_s3_object" resource in the source argument.
 
-Important: The s3 bucket provisions in this code will store only the source bundle zip file. Beanstalk will create automaticaly its own bucket where the artifact, and other resources will be stored. 
+Important: The s3 bucket provisions in this code will store only the source bundle zip file. Beanstalk will create automatically its own bucket where the artifact and other resources will be stored. 
 
 
 Author
