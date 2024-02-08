@@ -5,25 +5,25 @@ Use the submodules dropdown above to view the 15 submodules defined within this 
 
 Features
 ------------------------------------------------------------------------------------------------------------------------
-1- Create mutlistack application with MySQl, Elasticached, ActiveMQ in the backend, and Beanstalk in the frontend.
+1- Create mutlistack application with MySQL, Elasticached, ActiveMQ in the backend, and Beanstalk in the frontend.
 
-2- Iam role and policies for beantalk
+2- Iam role and policies for Beanstalk
 
 
 
 Usage
 ------------------------------------------------------------------------------------------------------------------------
-1- create a Directory called network. If you change the directory name, remember to adjust the path in terraform block.
+1- create a Directory called network. If you change the directory name, remember to adjust the path in the terraform block.
 
-This module create a network for the whole infrastructure. It has public subnet in 2 AZ where the bastion and beanstalk instances will be deployed. A private subnet for backend resources
+This module creates a network for the whole infrastructure. It has a public subnet in 2 AZ where the bastion and beanstalk instances will be deployed. A private subnet for backend resources
 
-2- Set up the bastion host to login to your RDS: create a Directory called bastion. If you change the directory name, remember to adjust the path in terraform block.    
+2- Set up the bastion host to log in to your RDS: create a Directory called bastion. If you change the directory name, remember to adjust the path in the terraform block.    
 
-Add SSH rule to bation security group form MyIP
+Add SSH rule to bastion security group from MyIP
 Login to bastion
 clone the source code
 
-Important: The network should have been created already, beacuse you need to refere this data.terraform_remote_state.vpc in your bastion main.tf code file
+Important: The network should have been created already because you need to refer this data.terraform_remote_state.vpc in your bastion main.tf code file
 
 Without the terraform local backend block, terraform will tell you that the state file cannot be read.
 
@@ -31,7 +31,7 @@ Without the terraform local backend block, terraform will tell you that the stat
 
 3-Set up your backend: create a directory called db, If you change the directory name, remember to adjust the path in the terraform block.
 
-
+Add a terraform block for required providers in db-main.tf code.
 
 It will generate password for mysql and ActiveMQ and stored in the parameter store in the system manager.
 
@@ -39,7 +39,7 @@ Will create mysql, Elaticached, and ActiveMQ instances and a backend securyty gr
 
 You must set up the data.terraform_remote_state.bastion, data.terraform_remote_state.vpc, and the terraform local backend for terraform apply to work without error messages.
 
-The bastion module should be created prior to db moddule.
+The bastion module should be created before db moddule.
 
 Without this block: the terraform local backend , an error message will be generated saying the state file could not be read.
 
