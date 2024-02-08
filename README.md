@@ -31,7 +31,7 @@ Without the terraform local backend block, terraform will tell you that the stat
 
 3-Set up your backend: create a directory called db, If you change the directory name, remember to adjust the path in the terraform block.
 
-Add a terraform block for required providers in db-main.tf code.
+ 
 
 It will generate passwords for MySQL and ActiveMQ and store them in the parameter store in the system manager.
 
