@@ -1,6 +1,6 @@
 This module version (1.0.0) has no root configuration. A module with no root configuration cannot be used directly.
 
-Use the submodules dropdown above to view the 15 submodules defined within this module.
+Use the submodules dropdown above to view the 5 submodules defined within this module.
 
 
 Features
@@ -19,7 +19,7 @@ This module creates a network for the whole infrastructure. It has a public subn
 
 2- Set up the bastion host to log in to your RDS: create a Directory called bastion. If you change the directory name, remember to adjust the path in the terraform block.    
 
-Add SSH rule to bastion security group from MyIP
+Add SSH rule to a bastion security group from MyIP
 Login to bastion
 clone the source code
 
